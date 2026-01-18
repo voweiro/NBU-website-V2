@@ -22,6 +22,7 @@ export default function Navbar() {
   const navRef = useRef<HTMLElement | null>(null);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
   const subMenuTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const mobileMenuRef = useRef<HTMLDivElement | null>(null);
   const pathname = usePathname();
 
   // Close mobile menu on route change
@@ -35,7 +36,10 @@ export default function Navbar() {
   // Close menu when clicking outside
   useEffect(() => {
     function handleClickOutside(event: MouseEvent): void {
-      if (navRef.current && !navRef.current.contains(event.target as Node)) {
+      const isInsideNav = navRef.current && navRef.current.contains(event.target as Node);
+      const isInsideMobile = mobileMenuRef.current && mobileMenuRef.current.contains(event.target as Node);
+      
+      if (!isInsideNav && !isInsideMobile) {
         setIsMobileOpen(false);
         setIsSearchOpen(false);
         setOpenDropdown("");
@@ -46,6 +50,18 @@ export default function Navbar() {
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
+
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    if (isMobileOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+    return () => {
+      document.body.style.overflow = "unset";
+    };
+  }, [isMobileOpen]);
 
   const toggleMobileMenu = () => {
     setIsMobileOpen((prev) => !prev);
@@ -140,10 +156,11 @@ export default function Navbar() {
   };
 
   return (
-    <nav
-      ref={navRef}
-      className="fixed top-4 left-1/2 -translate-x-1/2 w-[95%] lg:w-[80%] z-50 rounded-[2rem] border border-slate-100 py-3 bg-white/95 backdrop-blur-md shadow-xl"
-    >
+    <>
+      <nav
+        ref={navRef}
+        className="fixed top-4 left-1/2 -translate-x-1/2 w-[95%] lg:w-[80%] z-50 rounded-[2rem] border border-slate-100 py-3 bg-white/95 backdrop-blur-md shadow-xl"
+      >
       <div className="max-w-screen-2xl mx-auto px-6 lg:px-12">
         <div className="flex justify-between items-center relative">
           
@@ -244,8 +261,11 @@ export default function Navbar() {
                                   initial={{ opacity: 0, x: -10 }}
                                   animate={{ opacity: 1, x: 0 }}
                                   exit={{ opacity: 0, x: -10 }}
-                                  className="absolute left-full top-0 ml-2 w-72 p-2 bg-white rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.12)] border border-slate-100 backdrop-blur-sm z-50"
+                                  className="absolute left-full top-0 ml-1 w-72 p-2 bg-white rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.12)] border border-slate-100 backdrop-blur-sm z-50"
                                 >
+                                  {/* Invisible bridge to prevent mouse-out when moving across the small gap */}
+                                  <div className="absolute -left-4 top-0 bottom-0 w-4" />
+                                  
                                   {item.subItems.map((sub: { href: string; label: string }, sIdx: number) => (
                                     <Link
                                       key={sIdx}
@@ -363,6 +383,7 @@ export default function Navbar() {
           </motion.div>
         )}
       </AnimatePresence>
+    </nav>
 
       {/* Mobile Menu Overlay with Backdrop */}
       <AnimatePresence>
@@ -374,29 +395,34 @@ export default function Navbar() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={closeMobileMenu}
-              className="fixed inset-0 bg-slate-950/60 backdrop-blur-sm z-[55] xl:hidden"
+              className="fixed inset-0 bg-slate-950/60 backdrop-blur-sm z-[100] cursor-pointer"
             />
             
             {/* Sidebar */}
             <motion.div
+              ref={mobileMenuRef}
               initial={{ x: "100%" }}
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ type: "spring", damping: 25, stiffness: 200 }}
-              className="fixed right-0 top-0 h-full w-[85%] max-w-[320px] bg-slate-900 z-[60] xl:hidden flex flex-col shadow-2xl"
+              className="fixed right-0 top-0 h-[100dvh] w-[85%] max-w-[320px] bg-slate-900 z-[101] flex flex-col shadow-2xl overflow-hidden"
             >
               {/* Sidebar Header */}
-              <div className="flex justify-end p-6">
+              <div className="flex items-center justify-between p-6 border-b border-white/5">
+                 <Link href="/" onClick={closeMobileMenu} className="flex items-center gap-2">
+                    <Image src={logo} alt="NBU Logo" width={40} height={40} className="w-10 h-auto" />
+                    <span className="text-white font-black text-sm tracking-tighter uppercase italic">NBU</span>
+                 </Link>
                  <button 
                     onClick={closeMobileMenu}
-                    className="p-2 text-white/50 hover:text-white transition-colors"
+                    className="p-2 text-white/50 hover:text-white transition-colors bg-white/5 rounded-xl"
                  >
-                    <XMarkIcon className="h-7 w-7" />
+                    <XMarkIcon className="h-6 w-6" />
                  </button>
               </div>
 
               {/* Sidebar Content */}
-              <div className="flex-1 overflow-y-auto px-4 pb-12">
+              <div className="flex-1 overflow-y-auto px-4 py-8 custom-scrollbar">
                  <div className="space-y-1">
                     <Link
                       href="/"
@@ -418,12 +444,12 @@ export default function Navbar() {
                           <button
                             onClick={() => setOpenDropdown(isOpen ? "" : key)}
                             className={`w-full flex items-center justify-between p-4 rounded-xl text-base font-bold transition-all capitalize ${
-                              isOpen ? "bg-[#e62627] text-white" : isActive ? "text-[#e62627]" : "text-white"
+                              isOpen ? "bg-[#e62627] text-white shadow-lg shadow-red-600/20" : isActive ? "text-[#e62627]" : "text-white"
                             }`}
                           >
                             <span>{key}</span>
-                            <div className="flex items-center justify-center w-5 h-5 rounded-full border border-white/20">
-                               <span className="text-xs leading-none">{isOpen ? "−" : "+"}</span>
+                            <div className="flex items-center justify-center w-5 h-5 rounded-full border border-white/20 transition-transform duration-300" style={{ transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)' }}>
+                               <ChevronDownIcon className="w-3 h-3" />
                             </div>
                           </button>
 
@@ -433,7 +459,8 @@ export default function Navbar() {
                                 initial={{ height: 0, opacity: 0 }}
                                 animate={{ height: "auto", opacity: 1 }}
                                 exit={{ height: 0, opacity: 0 }}
-                                className="overflow-hidden bg-slate-800/50 rounded-xl mt-1"
+                                transition={{ duration: 0.3 }}
+                                className="overflow-hidden bg-white/5 rounded-xl mt-1 border border-white/5"
                               >
                                 {items.map((item, idx) => (
                                   <div key={idx} className="border-b border-white/5 last:border-none">
@@ -441,21 +468,21 @@ export default function Navbar() {
                                       href={item.href}
                                       onClick={closeMobileMenu}
                                       className={`flex items-center justify-between p-4 text-sm font-semibold transition-all ${
-                                        isActiveLink(item.href) ? "text-[#e62627]" : "text-white/70"
+                                        isActiveLink(item.href) ? "text-[#e62627]" : "text-white/70 hover:text-white hover:bg-white/5"
                                       }`}
                                     >
                                       <span>{item.label}</span>
                                     </Link>
                                     
                                     {item.subItems && (
-                                      <div className="bg-slate-900/50 py-2 space-y-1">
-                                        {item.subItems.map((sub, sIdx) => (
+                                      <div className="bg-black/20 py-2 space-y-1">
+                                        {item.subItems.map((sub: { href: string; label: string }, sIdx: number) => (
                                           <Link
                                             key={sIdx}
                                             href={sub.href}
                                             onClick={closeMobileMenu}
                                             className={`block px-8 py-2 text-xs font-medium transition-all ${
-                                              isActiveLink(sub.href) ? "text-[#e62627]" : "text-white/40"
+                                              isActiveLink(sub.href) ? "text-[#e62627]" : "text-white/40 hover:text-white/60"
                                             }`}
                                           >
                                             {sub.label}
@@ -494,21 +521,24 @@ export default function Navbar() {
                  </div>
 
                  {/* CTA in Sidebar */}
-                 <div className="mt-12 pt-12 border-t border-white/10">
+                 <div className="mt-8 pt-8 border-t border-white/10">
                     <Link
                       href="https://nbunet.nbu.edu.ng/Account/login"
                       target="_blank"
-                      className="block w-full py-4 bg-[#e62627] text-white rounded-xl text-center text-xs font-black uppercase tracking-widest shadow-lg shadow-red-600/20"
+                      className="block w-full py-4 bg-[#e62627] text-white rounded-xl text-center text-xs font-black uppercase tracking-widest shadow-lg shadow-red-600/20 active:scale-95 transition-transform"
                       onClick={closeMobileMenu}
                     >
                       Apply Now
                     </Link>
+                    <p className="text-[10px] text-white/30 text-center mt-4 font-bold uppercase tracking-widest">
+                       Nigerian British University
+                    </p>
                  </div>
               </div>
             </motion.div>
           </>
         )}
       </AnimatePresence>
-    </nav>
+    </>
   );
 }
