@@ -1,0 +1,138 @@
+@import "tailwindcss";
+
+@layer base {
+  body {
+    font-family: theme('fontFamily.sans');
+  }
+  h1, button {
+    font-family: theme('fontFamily.serif');
+  }
+}
+
+.layout {
+  max-width: 1280px;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem; /* Adjust padding for small screens */
+  padding-right: 1rem;
+}
+
+@keyframes zoomIn {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.1);
+  }
+}
+.animate-zoom {
+  animation: zoomIn 10s ease-in-out infinite alternate;
+}
+
+/* Scatter-in Animation */
+@keyframes scatterIn {
+  0% {
+    opacity: 0;
+    transform: translate(var(--x), var(--y)) rotate(var(--r));
+  }
+  100% {
+    opacity: 1;
+    transform: translate(0, 0) rotate(0);
+  }
+}
+
+/* Dynamic Letter Effects */
+.animate-scatter-in {
+  animation: scatterIn 1s ease-out forwards;
+}
+
+.delay-0 {
+  --x: -100px;
+  --y: -50px;
+  --r: -30deg;
+  animation-delay: 0.1s;
+}
+.delay-1 {
+  --x: 80px;
+  --y: 60px;
+  --r: 20deg;
+  animation-delay: 0.2s;
+}
+.delay-2 {
+  --x: -60px;
+  --y: 30px;
+  --r: -15deg;
+  animation-delay: 0.3s;
+}
+.delay-3 {
+  --x: 50px;
+  --y: -40px;
+  --r: 25deg;
+  animation-delay: 0.4s;
+}
+.delay-4 {
+  --x: -30px;
+  --y: 20px;
+  --r: -10deg;
+  animation-delay: 0.5s;
+}
+.delay-5 {
+  --x: 20px;
+  --y: -10px;
+  --r: 5deg;
+  animation-delay: 0.6s;
+}
+.delay-6 {
+  --x: 0px;
+  --y: 0px;
+  --r: 0deg;
+  animation-delay: 0.7s;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200px 0;
+  }
+  100% {
+    background-position: calc(200px + 100%) 0;
+  }
+}
+
+.shimmer {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200px 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+@keyframes ken-burns {
+  0% { transform: scale(1) translate(0); }
+  50% { transform: scale(1.05) translate(-1%, -1%); }
+  100% { transform: scale(1) translate(0); }
+}
+
+.animate-ken-burns {
+  animation: ken-burns 20s ease-in-out infinite alternate;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(230, 38, 39, 0.1);
+  border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(230, 38, 39, 0.3);
+}
