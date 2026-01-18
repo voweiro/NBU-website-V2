@@ -2,7 +2,18 @@
 
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { CreditCard, Wallet, BookOpen, AlertCircle, Stethoscope, GraduationCap, CheckCircle, FileText, ClipboardList, Utensils, Building2 } from "lucide-react";
+import { 
+  Wallet, 
+  BookOpen, 
+  AlertCircle, 
+  Stethoscope, 
+  GraduationCap, 
+  CheckCircle, 
+  FileText, 
+  ClipboardList, 
+  Utensils, 
+  Building2 
+} from "lucide-react";
 
 const TuitionFeesTable = () => {
   const [activeTab, setActiveTab] = useState("undergraduate");
@@ -295,7 +306,7 @@ const TuitionFeesTable = () => {
                  <h3 className="text-2xl font-black text-slate-900">Feeding Notice</h3>
               </div>
               <p className="text-slate-500 font-bold text-sm leading-relaxed">
-                The University shall not be responsible for students' feeding. Students are expected to manage their personal catering requirements within the available on-campus facilities.
+                The University shall not be responsible for students&apos; feeding. Students are expected to manage their personal catering requirements within the available on-campus facilities.
               </p>
             </motion.div>
           </div>

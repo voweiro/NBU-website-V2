@@ -17,10 +17,8 @@ import {
   enrollmentSummary 
 } from "@/lib/statisticsData";
 import { 
-  TrendingUp, 
-  Users, 
-  BarChart3, 
-  PieChart as PieChartIcon,
+  TrendingUp,
+  BarChart3,
   GraduationCap
 } from "lucide-react";
 
@@ -58,7 +56,7 @@ const StatisticsSection = () => {
                 Financial <span className="text-slate-400">Overview 2024</span>
               </motion.h2>
               <p className="text-slate-500 font-bold text-sm uppercase tracking-widest leading-relaxed">
-                A breakdown of Nigerian British University's annual budgetary allocation.
+                A breakdown of Nigerian British University&apos;s annual budgetary allocation.
               </p>
             </div>
             
@@ -98,7 +96,7 @@ const StatisticsSection = () => {
                   </Pie>
                   <Tooltip 
                     contentStyle={{ borderRadius: '20px', border: 'none', boxShadow: '0 10px 30px rgba(0,0,0,0.1)' }}
-                    formatter={(value: any) => formatCurrency(Number(value) ?? 0)}
+                    formatter={(value: number | string | undefined) => formatCurrency(Number(value || 0))}
                   />
                   <Legend verticalAlign="bottom" height={36}/>
                 </PieChart>
@@ -283,8 +281,7 @@ const StatisticsSection = () => {
                 <BarChart3 className="w-12 h-12 text-[#e62627] mb-8" />
                 <h3 className="text-2xl md:text-3xl font-black text-white mb-4 uppercase tracking-widest">Statistical Accuracy</h3>
                 <p className="text-slate-400 font-bold text-sm leading-relaxed mb-0">
-                    All data presented on this page is sourced directly from the University's official Planning and Financial offices. 
-                    Figures are updated at the end of each academic session to ensure transparency and accountability.
+                    All data presented on this page is sourced directly from the University&apos;s official Planning and Financial offices.                     Figures are updated at the end of each academic session to ensure transparency and accountability.
                 </p>
             </div>
         </div>

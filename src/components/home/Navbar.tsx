@@ -246,7 +246,7 @@ export default function Navbar() {
                                   exit={{ opacity: 0, x: -10 }}
                                   className="absolute left-full top-0 ml-2 w-72 p-2 bg-white rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.12)] border border-slate-100 backdrop-blur-sm z-50"
                                 >
-                                  {item.subItems.map((sub: any, sIdx: number) => (
+                                  {item.subItems.map((sub: { href: string; label: string }, sIdx: number) => (
                                     <Link
                                       key={sIdx}
                                       href={sub.href}

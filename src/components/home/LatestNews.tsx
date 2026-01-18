@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { Calendar, ArrowRight, Tag } from "lucide-react";
+import { Calendar, ArrowRight } from "lucide-react";
 
 // Mock data for university news
 const newsItems = [

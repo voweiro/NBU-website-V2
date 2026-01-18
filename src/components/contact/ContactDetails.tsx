@@ -58,7 +58,7 @@ const ContactDetails = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 className="text-4xl md:text-5xl font-black text-slate-900 leading-tight"
               >
-                Let's Start a <span className="text-slate-400">Conversation</span>
+                Let&apos;s Start a <span className="text-slate-400">Conversation</span>
               </motion.h2>
             </div>
 

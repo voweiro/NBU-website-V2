@@ -3,7 +3,6 @@
 import React, { useState } from "react";
 import { 
   ChevronDown, 
-  GraduationCap, 
   Cpu, 
   Briefcase, 
   Stethoscope, 

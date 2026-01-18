@@ -1,8 +1,10 @@
+"use client";
+
 import { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { bulletins, Bulletin } from "@/lib/bulletinData";
 import Image from "next/image";
-import { Search, Download, Eye, Calendar, FileText, ChevronRight, Newspaper } from "lucide-react";
+import { Search, Download, Eye, Calendar, FileText, Newspaper } from "lucide-react";
 
 const SchoolBulletin = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -18,12 +20,9 @@ const SchoolBulletin = () => {
 
   return (
     <section className="py-24 bg-white relative">
-      {/* Background decoration */}
       <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-slate-50 rounded-full blur-3xl opacity-50 -translate-y-1/2 translate-x-1/2" />
       
       <div className="max-w-7xl mx-auto px-6 relative z-10">
-        
-        {/* Header Section */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-10 mb-20">
           <div className="max-w-2xl">
             <motion.span 
@@ -43,7 +42,6 @@ const SchoolBulletin = () => {
             <p className="text-slate-500 font-bold text-sm uppercase tracking-widest">Digital editions for the 2024/2025 Session</p>
           </div>
 
-          {/* Search Bar */}
           <div className="shrink-0 w-full md:w-96">
              <div className="relative group">
                 <Search className="absolute left-6 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400 group-focus-within:text-[#e62627] transition-colors" />
@@ -58,7 +56,6 @@ const SchoolBulletin = () => {
           </div>
         </div>
 
-        {/* Content Grid */}
         <AnimatePresence mode="popLayout">
           {filtered.length === 0 ? (
             <motion.div 
@@ -82,7 +79,6 @@ const SchoolBulletin = () => {
                   transition={{ delay: i * 0.1 }}
                   className="group relative bg-white rounded-[3rem] border border-slate-100 shadow-xl shadow-slate-200/50 overflow-hidden hover:shadow-2xl hover:shadow-slate-300/60 transition-all duration-500"
                 >
-                  {/* Image Container */}
                   <div className="relative h-72 overflow-hidden">
                     <div className="absolute inset-0 bg-slate-900 group-hover:scale-110 transition-transform duration-700">
                       <Image
@@ -92,7 +88,6 @@ const SchoolBulletin = () => {
                         className="object-cover opacity-80 group-hover:opacity-100 transition-opacity"
                       />
                     </div>
-                    {/* Month Badge */}
                     <div className="absolute top-6 left-6 z-10">
                       <div className="px-5 py-2 bg-white/10 backdrop-blur-xl border border-white/20 rounded-full">
                         <span className="text-white text-[10px] font-black uppercase tracking-widest">{b.month} Edition</span>
@@ -100,7 +95,6 @@ const SchoolBulletin = () => {
                     </div>
                   </div>
 
-                  {/* Text Content */}
                   <div className="p-10">
                     <div className="flex items-center gap-3 mb-4">
                       <Calendar className="w-4 h-4 text-[#e62627]" />
@@ -111,7 +105,6 @@ const SchoolBulletin = () => {
                        {b.description}
                     </p>
 
-                    {/* Footer Actions */}
                     <div className="flex items-center gap-4">
                        <a
                           href={b.url}
@@ -136,7 +129,6 @@ const SchoolBulletin = () => {
           )}
         </AnimatePresence>
 
-        {/* Contact/Subscription CTA */}
         <div className="mt-32 p-12 md:p-20 bg-slate-900 rounded-[4rem] flex flex-col md:flex-row items-center justify-between gap-12 relative overflow-hidden">
            <div className="absolute top-0 right-0 w-96 h-96 bg-[#e62627] rounded-full blur-[150px] opacity-10" />
            <div className="relative z-10 max-w-xl text-center md:text-left">
@@ -158,7 +150,6 @@ const SchoolBulletin = () => {
         </div>
       </div>
 
-      {/* Modern Modal */}
       <AnimatePresence>
         {selectedBulletin && (
           <motion.div
@@ -181,7 +172,7 @@ const SchoolBulletin = () => {
               
               <h3 className="text-2xl font-black text-slate-900 mb-4">Download Ready</h3>
               <p className="text-slate-500 font-bold text-sm leading-relaxed mb-10">
-                The digital edition of <span className="text-slate-900">"{selectedBulletin.title}"</span> is ready for download.
+                The digital edition of <span className="text-slate-900">&ldquo;{selectedBulletin.title}&rdquo;</span> is ready for download.
               </p>
               
               <div className="flex flex-col gap-4">

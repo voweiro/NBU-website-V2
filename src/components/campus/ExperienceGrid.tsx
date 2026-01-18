@@ -3,131 +3,149 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { 
-  Home, 
-  Utensils, 
+  BookOpen, 
   Stethoscope, 
   Wifi, 
   ShieldCheck, 
   Users,
   Dumbbell,
-  Library
+  Utensils,
+  Trophy,
+  Globe,
+  Camera,
+  Heart
 } from "lucide-react";
 
 const experiences = [
   {
-    icon: Home,
-    title: "Student Housing",
-    description: "Modern, secure, and comfortable hostels designed to foster a sense of community while providing privacy for study.",
-    image: "/images/campus/hostel.jpg"
+    title: "Modern Library",
+    description: "Access to thousands of digital and physical resources 24/7.",
+    icon: BookOpen,
+    color: "bg-blue-500"
   },
   {
-    icon: Utensils,
-    title: "Dining Services",
-    description: "Nutritious and varied meal options served in our state-of-the-art cafeteria, catering to diverse dietary needs.",
-    image: "/images/campus/dining.jpg"
-  },
-  {
+    title: "Health Center",
+    description: "Fully equipped clinic with certified medical professionals.",
     icon: Stethoscope,
-    title: "Health & Wellness",
-    description: "24/7 on-campus medical center staffed with professionals to ensure the physical and mental well-being of our students.",
-    image: "/images/campus/medical.jpg"
+    color: "bg-[#e62627]"
   },
   {
-    icon: Dumbbell,
-    title: "Sports & Fitness",
-    description: "World-class athletic facilities, including a gymnasium, football pitch, and basketball courts.",
-    image: "/images/campus/sports.jpg"
-  },
-  {
+    title: "High-speed Wi-Fi",
+    description: "Seamless connectivity across the entire campus grounds.",
     icon: Wifi,
-    title: "Smart Campus",
-    description: "High-speed campus-wide WiFi and digital resources keeping you connected to the world and your studies.",
-    image: "/images/campus/smart.jpg"
+    color: "bg-cyan-500"
   },
   {
+    title: "Elite Sports",
+    description: "Olympic-standard facilities for all major sporting events.",
+    icon: Dumbbell,
+    color: "bg-amber-500"
+  },
+  {
+    title: "24/7 Security",
+    description: "Advanced surveillance and professional security personnel.",
     icon: ShieldCheck,
-    title: "Safety & Security",
-    description: "Round-the-clock security surveillance and personnel to ensure a safe and peaceful learning environment.",
-    image: "/images/campus/security.jpg"
+    color: "bg-slate-900"
+  },
+  {
+    title: "Dining Halls",
+    description: "Nutritious and diverse meal options for all students.",
+    icon: Utensils,
+    color: "bg-emerald-500"
   }
 ];
 
 const ExperienceGrid = () => {
   return (
-    <section className="py-24 bg-white">
+    <section className="py-24 bg-slate-50 relative overflow-hidden">
+      <div className="absolute top-0 left-0 w-full h-[1000px] bg-white -z-10 skew-y-3 origin-top-left" />
+      
       <div className="max-w-7xl mx-auto px-6">
-        
-        {/* Header */}
-        <div className="mb-20 text-center md:text-left">
-          <motion.span 
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            className="font-black uppercase tracking-[0.3em] text-[10px] md:text-xs text-[#e62627] mb-4 block"
-          >
-            Our Facilities
-          </motion.span>
-          <motion.h2 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            className="text-4xl md:text-6xl font-black text-slate-900 mb-8"
-          >
-            The Full <span className="text-slate-400">Student Experience</span>
-          </motion.h2>
-          <div className="h-1 w-20 bg-[#e62627] mb-8" />
+        <div className="flex flex-col md:flex-row items-end justify-between mb-20 gap-8">
+           <div className="max-w-2xl">
+              <motion.span 
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                className="font-black uppercase tracking-[0.3em] text-[10px] md:text-xs text-[#e62627] mb-4 block"
+              >
+                Student Experience
+              </motion.span>
+              <motion.h2 
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                className="text-4xl md:text-6xl font-black text-slate-900 mb-6"
+              >
+                Life at <span className="text-slate-400">NBU Campus</span>
+              </motion.h2>
+              <p className="text-slate-500 font-bold text-sm md:text-base uppercase tracking-widest leading-relaxed">
+                 Explore the world-class facilities designed for excellence.
+              </p>
+           </div>
+           
+           <div className="flex gap-4">
+              <div className="w-12 h-12 bg-white rounded-2xl shadow-lg shadow-slate-200 flex items-center justify-center">
+                 <Trophy className="w-5 h-5 text-amber-500" />
+              </div>
+              <div className="w-12 h-12 bg-white rounded-2xl shadow-lg shadow-slate-200 flex items-center justify-center">
+                 <Globe className="w-5 h-5 text-blue-500" />
+              </div>
+              <div className="w-12 h-12 bg-white rounded-2xl shadow-lg shadow-slate-200 flex items-center justify-center">
+                 <Camera className="w-5 h-5 text-[#e62627]" />
+              </div>
+           </div>
         </div>
 
-        {/* Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
           {experiences.map((exp, i) => (
             <motion.div
               key={i}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: i * 0.1 }}
               viewport={{ once: true }}
-              className="group relative h-[450px] rounded-[2.5rem] overflow-hidden shadow-2xl shadow-slate-200/50"
+              className="group p-10 bg-white rounded-[3rem] border border-slate-100 hover:shadow-2xl hover:shadow-slate-200 transition-all duration-500 relative overflow-hidden"
             >
-              {/* Background Placeholder/Pattern (Simulating Image) */}
-              <div className="absolute inset-0 bg-slate-100 group-hover:scale-110 transition-transform duration-700">
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent z-10" />
+              <div className="absolute top-0 right-0 w-32 h-32 bg-slate-50 rounded-full -mr-16 -mt-16 group-hover:scale-150 transition-transform duration-700" />
+              
+              <div className={`w-14 h-14 ${exp.color} rounded-2xl flex items-center justify-center text-white mb-8 relative z-10 shadow-lg`}>
+                <exp.icon className="w-6 h-6" />
               </div>
-
-              {/* Content */}
-              <div className="absolute inset-0 p-10 flex flex-col justify-end z-20">
-                <div className="mb-6 w-14 h-14 bg-white rounded-2xl flex items-center justify-center shadow-lg group-hover:bg-[#e62627] group-hover:text-white transition-colors duration-500">
-                  <exp.icon className="w-6 h-6 transition-transform group-hover:scale-110" />
-                </div>
-                <h3 className="text-2xl font-black text-white mb-4">{exp.title}</h3>
-                <p className="text-slate-300 text-sm font-medium leading-relaxed opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-500">
-                  {exp.description}
-                </p>
-              </div>
-
-              {/* Decorative border */}
-              <div className="absolute inset-0 border-[1px] border-white/10 rounded-[2.5rem] pointer-events-none group-hover:border-[#e62627]/30 transition-colors duration-500" />
+              
+              <h3 className="text-xl font-black text-slate-900 mb-4 relative z-10">{exp.title}</h3>
+              <p className="text-slate-500 text-sm font-semibold leading-relaxed relative z-10">
+                {exp.description}
+              </p>
             </motion.div>
           ))}
         </div>
 
-        {/* Community Highlight */}
         <motion.div 
            initial={{ opacity: 0, scale: 0.95 }}
            whileInView={{ opacity: 1, scale: 1 }}
-           className="mt-24 p-12 md:p-20 bg-slate-950 rounded-[4rem] text-center relative overflow-hidden"
+           className="relative p-12 md:p-20 bg-slate-900 rounded-[4rem] text-center overflow-hidden"
         >
-            <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-[#e62627]/10 via-transparent to-transparent opacity-50" />
-            <div className="relative z-10 max-w-3xl mx-auto">
-                <Users className="w-12 h-12 text-[#e62627] mx-auto mb-8" />
-                <h3 className="text-3xl md:text-5xl font-black text-white mb-6">Built Around Community</h3>
-                <p className="text-slate-400 text-lg font-medium leading-relaxed mb-10">
-                    At NBU, you're not just a student; you're part of a diverse, global family. From late-night study sessions to weekend sports, every moment is an opportunity to grow together.
-                </p>
-                <div className="flex flex-wrap justify-center gap-6">
-                    <div className="px-6 py-3 bg-white/5 rounded-full border border-white/10 text-white font-black uppercase tracking-widest text-[10px]">20+ Student Clubs</div>
-                    <div className="px-6 py-3 bg-white/5 rounded-full border border-white/10 text-white font-black uppercase tracking-widest text-[10px]">Global Diversity</div>
-                    <div className="px-6 py-3 bg-white/5 rounded-full border border-white/10 text-white font-black uppercase tracking-widest text-[10px]">Vibrant Campus Life</div>
-                </div>
-            </div>
+           <div className="absolute top-0 right-0 w-96 h-96 bg-[#e62627] rounded-full blur-[150px] opacity-10" />
+           <div className="absolute bottom-0 left-0 w-96 h-96 bg-blue-600/10 rounded-full blur-[150px] opacity-10" />
+           
+           <div className="relative z-10 max-w-2xl mx-auto">
+              <div className="w-16 h-16 bg-white/5 rounded-2xl flex items-center justify-center mx-auto mb-10">
+                 <Users className="w-8 h-8 text-white" />
+              </div>
+              <h3 className="text-3xl md:text-5xl font-black text-white mb-8">Ready to <span className="text-[#e62627]">join us?</span></h3>
+              <p className="text-white/60 text-base md:text-lg font-medium leading-relaxed mb-12 italic">
+                 &ldquo;Campus life at NBU is designed to be more than just academics. It&apos;s about community, growth, and leading with purpose.&rdquo;
+              </p>
+              
+              <div className="flex flex-col sm:flex-row gap-6 justify-center">
+                 <button className="px-10 py-5 bg-[#e62627] text-white rounded-full font-black uppercase tracking-widest text-xs hover:bg-white hover:text-[#e62627] transition-all shadow-xl shadow-red-600/20 active:scale-95">
+                    Schedule a Visit
+                 </button>
+                 <div className="flex items-center justify-center gap-4 px-10 py-5 bg-white/5 border border-white/10 rounded-full text-white font-black uppercase tracking-widest text-xs">
+                    <Heart className="w-4 h-4 text-[#e62627]" />
+                    Join the Community
+                 </div>
+              </div>
+           </div>
         </motion.div>
       </div>
     </section>

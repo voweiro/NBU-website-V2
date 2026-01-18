@@ -7,12 +7,9 @@ import {
   Shield,
   Users,
   Lightbulb,
-  Award,
   Heart,
   Eye,
-  GraduationCap,
-  Sparkles,
-  ChevronRight
+  Sparkles
 } from "lucide-react";
 import { motion } from "framer-motion";
 import Image from "next/image";
@@ -87,10 +84,10 @@ export default function UniversityAbout() {
               <div className="w-16 h-1 bg-[#e62627] mx-auto mb-10 rounded-full" />
               <h2 className="text-4xl md:text-5xl font-black text-white mb-8">Our Philosophy</h2>
               <p className="text-white/70 text-lg md:text-xl leading-relaxed font-medium italic">
-                "Our philosophy is rooted in holistic development and global perspectives. We
+                &ldquo;Our philosophy is rooted in holistic development and global perspectives. We
                 believe education should empower students intellectually, morally, and socially.
                 Our curriculum encourages critical thinking, ethical leadership, and active
-                community engagement."
+                community engagement.&rdquo;
               </p>
             </motion.div>
           </div>

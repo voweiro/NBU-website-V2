@@ -4,15 +4,8 @@ import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { 
   Calendar, 
-  Clock, 
-  MapPin, 
-  FileText, 
   Download, 
-  CheckCircle2, 
   AlertCircle,
-  Coffee,
-  BookOpen,
-  Trophy,
   ChevronRight
 } from "lucide-react";
 import { academicCalendar } from "@/lib/calendarData";
@@ -20,16 +13,7 @@ import { academicCalendar } from "@/lib/calendarData";
 const AcademicCalendar = () => {
   const [activeTab, setActiveTab] = useState(0);
 
-  const getCategoryIcon = (category: string) => {
-    switch (category) {
-      case "Academic": return <BookOpen className="w-4 h-4" />;
-      case "Holiday": return <Coffee className="w-4 h-4" />;
-      case "Exam": return <FileText className="w-4 h-4" />;
-      case "Social": return <Trophy className="w-4 h-4" />;
-      case "Administrative": return <Clock className="w-4 h-4" />;
-      default: return <Calendar className="w-4 h-4" />;
-    }
-  };
+
 
   const getCategoryStyles = (category: string) => {
     switch (category) {

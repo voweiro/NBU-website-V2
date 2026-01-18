@@ -3,7 +3,7 @@
 import React from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { Target, Eye, Sparkles } from "lucide-react";
+import { Target, Eye } from "lucide-react";
 import tuition from "@/asserts/vc.jpg";
 
 const History = () => {
@@ -81,7 +81,7 @@ const History = () => {
                 <p className="text-slate-600 text-sm leading-relaxed">
                   To lead the charge in educating and disseminating knowledge in
                   science and technology and to channel that knowledge toward
-                  solving society's challenges.
+                  solving society&apos;s challenges.
                 </p>
               </motion.div>
 

@@ -1,7 +1,9 @@
+"use client";
+
 import { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { faqs, FAQ } from "@/lib/faqData";
-import { Search, Filter, Plus, Minus, MessageSquare, ChevronDown } from "lucide-react";
+import { faqs } from "@/lib/faqData";
+import { Search, MessageSquare, ChevronDown } from "lucide-react";
 
 const FAQSection = () => {
   const [searchQuery, setSearchQuery] = useState("");
