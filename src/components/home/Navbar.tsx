@@ -153,6 +153,7 @@ export default function Navbar() {
       { href: "/admission/tuition-fee", label: "Tuition Fee" },
     ],
     resources: [
+      { href: "https://vle.nbu.edu.ng/", label: "NBU-LMS" },
       { href: "/resources/academic-calendar", label: "Academic Calendar" },
       { href: "/resources/faq", label: "FAQ" },
       { href: "/resources/nbulletin", label: "N-Bulletin" },
@@ -334,6 +335,23 @@ export default function Navbar() {
                     </AnimatePresence>
                   </div>
                 ))}
+
+                <Link
+                  href="https://payment-portal.nbu.edu.ng/"
+                  className={`flex items-center px-4 py-2 rounded-xl text-[15px] font-bold transition-all duration-200 relative whitespace-nowrap ${
+                    isActiveLink("https://payment-portal.nbu.edu.ng/")
+                      ? "text-[#e62627]"
+                      : "text-slate-700 hover:text-slate-950"
+                  }`}
+                >
+                  Pay Fees
+                  {isActiveLink("https://payment-portal.nbu.edu.ng/") && (
+                    <motion.span
+                      layoutId="activeNav"
+                      className="absolute bottom-0.5 left-1/2 -translate-x-1/2 w-1.5 h-1.5 rounded-full bg-[#e62627]"
+                    />
+                  )}
+                </Link>
 
                 <Link
                   href="/campus-life"
@@ -583,6 +601,18 @@ export default function Navbar() {
                       </div>
                     );
                   })}
+
+                  <Link
+                    href="https://payment-portal.nbu.edu.ng/"
+                    onClick={closeMobileMenu}
+                    className={`block p-4 rounded-xl text-base font-bold transition-all ${
+                      isActiveLink("https://payment-portal.nbu.edu.ng/")
+                        ? "text-[#e62627]"
+                        : "text-white"
+                    }`}
+                  >
+                    Pay Fees
+                  </Link>
 
                   <Link
                     href="/campus-life"
