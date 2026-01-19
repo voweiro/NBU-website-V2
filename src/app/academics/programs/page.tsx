@@ -5,7 +5,7 @@ import DegreePrograms from "@/components/academics/programs";
 import tuition from "@/asserts/nbu-pics.png";
 import { useRouter } from "next/navigation";
 
-export default function Home() {
+export default function ProgramsPage() {
   const router = useRouter();
 
   return (

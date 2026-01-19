@@ -15,7 +15,7 @@ export default function ProfileModal({ officer, onClose }: ProfileModalProps) {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="fixed inset-0 z-[60] flex items-center justify-center p-4 md:p-8 overflow-hidden"
+      className="fixed inset-0 z-[60] flex items-center justify-center p-2 md:p-8 overflow-hidden"
     >
       {/* Dynamic Backdrop */}
       <div 
@@ -28,7 +28,7 @@ export default function ProfileModal({ officer, onClose }: ProfileModalProps) {
         animate={{ scale: 1, opacity: 1, y: 0 }}
         exit={{ scale: 0.9, opacity: 0, y: 40 }}
         transition={{ type: "spring", damping: 25, stiffness: 300 }}
-        className="relative bg-white rounded-[3rem] shadow-[0_50px_100px_-20px_rgba(0,0,0,0.5)] max-w-5xl w-full max-h-[90vh] overflow-hidden flex flex-col md:flex-row"
+        className="relative bg-white rounded-[2rem] md:rounded-[3rem] shadow-[0_50px_100px_-20px_rgba(0,0,0,0.5)] max-w-5xl w-full h-[85vh] md:h-auto md:max-h-[90vh] overflow-hidden flex flex-col md:flex-row"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Left Side - Image/Identity Section */}
@@ -38,7 +38,7 @@ export default function ProfileModal({ officer, onClose }: ProfileModalProps) {
             <div className="absolute bottom-0 left-0 w-64 h-64 bg-blue-600 rounded-full blur-[100px] translate-y-1/2 -translate-x-1/2" />
           </div>
           
-          <div className="relative h-full flex flex-col p-12 text-white">
+          <div className="relative h-48 md:h-full flex flex-col p-6 md:p-12 text-white">
             <div className="mb-12">
                 <div className="w-16 h-1 w-[#e62627]" />
             </div>
@@ -73,7 +73,7 @@ export default function ProfileModal({ officer, onClose }: ProfileModalProps) {
         </div>
 
         {/* Right Side - Content Section */}
-        <div className="md:w-3/5 relative bg-white flex flex-col">
+        <div className="flex-1 md:w-3/5 relative bg-white flex flex-col min-h-0">
           {/* Close Button */}
           <button
             onClick={onClose}
@@ -82,7 +82,7 @@ export default function ProfileModal({ officer, onClose }: ProfileModalProps) {
             <X className="w-5 h-5 transition-transform group-hover:rotate-90" />
           </button>
 
-          <div className="flex-grow overflow-y-auto p-12 custom-scrollbar">
+          <div className="flex-1 overflow-y-auto p-6 md:p-12 custom-scrollbar">
             <div className="space-y-10">
               {/* Bio Section */}
               <section>
